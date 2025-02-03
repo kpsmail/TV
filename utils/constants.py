@@ -1,12 +1,28 @@
 import os
 
-output_dir = "output"
+config_path = "config"
 
-log_file = "result_new.log"
+output_path = "output"
 
-log_path = os.path.join(output_dir, log_file)
+whitelist_path = os.path.join(config_path, "whitelist.txt")
 
-url_pattern = r"((https?):\/\/)?(\[[0-9a-fA-F:]+\]|([\w-]+\.)+[\w-]+)(:[0-9]{1,5})?(\/[^\s]*)?(\$[^\s]+)?"
+blacklist_path = os.path.join(config_path, "blacklist.txt")
+
+subscribe_path = os.path.join(config_path, "subscribe.txt")
+
+result_path = os.path.join(output_path, "result_new.txt")
+
+cache_path = os.path.join(output_path, "cache.pkl")
+
+sort_log_path = os.path.join(output_path, "sort.log")
+
+log_path = os.path.join(output_path, "log.log")
+
+url_host_pattern = r"((https?|rtmp)://)?(\[[0-9a-fA-F:]+]|([\w-]+\.?)+[\w-]+)"
+
+url_pattern = url_host_pattern + r"(.*)?"
+
+rtmp_url_pattern = r"^rtmp://.*$"
 
 rtp_pattern = r"^([^,，]+)(?:[,，])?(rtp://.*)$"
 
@@ -87,6 +103,8 @@ origin_map = {
     "multicast": "组播源",
     "subscribe": "订阅源",
     "online_search": "关键字源",
+    "whitelist": "白名单",
+    "local": "本地源",
 }
 
 ipv6_proxy = "http://www.ipv6proxy.net/go.php?u="
@@ -95,4 +113,4 @@ foodie_url = "http://www.foodieguide.com/iptvsearch/"
 
 foodie_hotel_url = "http://www.foodieguide.com/iptvsearch/hoteliptv.php"
 
-waiting_tip = "🔍️正在更新，请耐心等待更新完成..."
+waiting_tip = "🔍️未找到结果文件，若已启动更新，请耐心等待更新完成..."
